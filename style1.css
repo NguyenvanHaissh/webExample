@@ -1,0 +1,130 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+body{
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    align-content: center;
+    background: linear-gradient(45deg,rgb(107, 104, 104),rgb(53, 50, 50));
+}
+.menu{
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    list-style: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu li{
+    position: absolute;
+    left: 0;
+    transform-origin: 150px;
+    transform: rotate(0deg) translateX(100px);
+    font-size: 20px;
+    transition-delay: calc(0.1s * var(--i));
+    transition: 0.8s;
+}
+.menu li a{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(calc(360deg / -8 * var(--i)));
+    color: transparent;
+    transition: all 0.7s;
+    transition-delay: calc(0.2s * var(--i));
+    perspective: 800px;
+    transform-style: preserve-3d;
+}
+.menu.active li a{
+    color: var(--clr);
+}
+.menu li a::before{
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--clr);
+    transform: rotate(calc(var(--i) * 90deg)) translate(0,30px);
+    transition: transform 0.5s, width 1s, height 1.5s;
+    transition-delay: 0s,0s,0s;
+}
+.menu.active li{
+    transform: rotate(calc(360deg/8 * var(--i)));
+}
+.menu.active li a::before{
+    width: 60px;
+    height: 60px;
+    background: transparent;
+    border: 2px solid var(--clr);
+    transform:  rotate(0) translate(0);
+    transition: transform 0.5s, width 1s, height 1.5s;
+    transition-delay: 1s,1.5s,1.5s;
+    background: linear-gradient(45deg,rgb(107, 104, 104),rgb(53, 50, 50));
+    z-index: 1;
+    box-shadow: 0 0 10px rgb(57, 55, 55),0 0 15px rgb(109, 217, 213),0 0 20px var(--clr);
+}
+.menu li a::after{
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background: var(--clr);
+    transform: rotate(calc(var(--i) * 91deg)) translate(55px,0px);
+    transition: transform 0.5s,width 1.5s;
+    transition-delay: 0s,0s;
+}
+.menu.active li a::after{
+    width: 100px;
+    transform: rotate(calc(var(--i) * 45deg)) translate(50px,0);
+    transition: transform 0.5s,width 2s;
+    transition-delay: 0.5s,2s;
+}
+.menu.active li a ion-icon{
+    z-index: 2;
+    background: transparent;
+}
+.menu.active li a ion-icon:hover{
+    box-shadow: 0px 0px 5px rgb(57, 231, 72),0px 0px 15px rgb(72, 227, 170),0px 0px 25px rgb(63, 129, 215);
+    animation: dichuyen 0.9s 1;
+    animation-fill-mode: forwards;
+    transition: 0.5s;
+}
+@keyframes dichuyen{
+    0%{
+        transform: rotate(0deg) translateZ(40px);
+    }
+    100%{
+        transform: rotate(360deg) translateZ(260px);
+    }
+}
+.menutoggle{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.5s;
+    z-index: 1000;
+    color: rgb(34, 235, 208);
+    transform: translateX(-20px);
+}
+.menutoggle>ion-icon{
+    box-shadow: 0 0 10px rgb(57, 55, 55),0 0 15px rgb(109, 217, 213),0 0 20px rgb(95, 231, 124);
+}
+.menu.active .menutoggle{
+    transform: rotate(310deg) scale(0.8) ;
+}
+
